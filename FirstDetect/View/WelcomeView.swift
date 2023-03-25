@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    @State private var showMainView = false
+    @State private var showSelectView = false
     
     var body: some View {
         VStack {
@@ -18,7 +18,7 @@ struct WelcomeView: View {
                 .padding(.bottom, 50)
             
             Button(action: {
-                self.showMainView = true
+                self.showSelectView = true
             }, label: {
                 Text("Get Started")
                     .font(.headline)
@@ -28,7 +28,7 @@ struct WelcomeView: View {
                     .cornerRadius(10)
             })
         }
-        .fullScreenCover(isPresented: $showMainView, content: {
+        .fullScreenCover(isPresented: $showSelectView, content: {
             SelectScriptView()
         })
     }

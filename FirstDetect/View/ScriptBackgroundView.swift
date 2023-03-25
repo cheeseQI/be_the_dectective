@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ScriptBackgroundView: View {
     let script: Script
+    @State private var showMainView = false
     
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct ScriptBackgroundView: View {
             }
             Spacer()
             Button(action: {
-                // Navigate back to MainView
+                showMainView = true
             }, label: {
                 Text("Get Started")
                     .font(.headline)
@@ -29,9 +30,13 @@ struct ScriptBackgroundView: View {
             })
             .padding(.bottom, 16)
         }
-        .navigationTitle(script.title)
+        .navigationTitle("Script Background")
+        .fullScreenCover(isPresented: $showMainView, content: {
+            MainView()
+        })
     }
 }
+
 
 struct ScriptBackgroundView_Previews: PreviewProvider {
     static var previews: some View {
