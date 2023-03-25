@@ -19,7 +19,7 @@
 		C235751E29CF979B00C82018 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235751D29CF979B00C82018 /* ChatListView.swift */; };
 		C235752129CF9C7A00C82018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752029CF9C7A00C82018 /* MainView.swift */; };
 		C235752329CF9CB900C82018 /* ClueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752229CF9CB900C82018 /* ClueView.swift */; };
-		C235752529CFA62E00C82018 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752429CFA62E00C82018 /* DataModel.swift */; };
+		C235752729CFAA8900C82018 /* ChatDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752629CFAA8900C82018 /* ChatDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		C235751D29CF979B00C82018 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		C235752029CF9C7A00C82018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C235752229CF9CB900C82018 /* ClueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueView.swift; sourceTree = "<group>"; };
-		C235752429CFA62E00C82018 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		C235752629CFAA8900C82018 /* ChatDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +106,7 @@
 			children = (
 				C235751529CF942100C82018 /* Message.swift */,
 				C235751929CF96FF00C82018 /* Chat.swift */,
-				C235752429CFA62E00C82018 /* DataModel.swift */,
+				C235752629CFAA8900C82018 /* ChatDB.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -190,13 +190,13 @@
 			files = (
 				C235751329CF93D900C82018 /* MessageView.swift in Sources */,
 				C235752129CF9C7A00C82018 /* MainView.swift in Sources */,
-				C235752529CFA62E00C82018 /* DataModel.swift in Sources */,
 				C235751A29CF96FF00C82018 /* Chat.swift in Sources */,
 				C235751629CF942100C82018 /* Message.swift in Sources */,
 				C235751C29CF976200C82018 /* ChatListItemView.swift in Sources */,
 				C235751E29CF979B00C82018 /* ChatListView.swift in Sources */,
 				C235751829CF94CD00C82018 /* ChatView.swift in Sources */,
 				C235750629CF919800C82018 /* ContentView.swift in Sources */,
+				C235752729CFAA8900C82018 /* ChatDB.swift in Sources */,
 				C235750429CF919800C82018 /* FirstDetectApp.swift in Sources */,
 				C235752329CF9CB900C82018 /* ClueView.swift in Sources */,
 			);
