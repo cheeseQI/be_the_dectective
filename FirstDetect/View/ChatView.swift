@@ -7,15 +7,15 @@
 import SwiftUI
 
 struct ChatView: View {
-    let chat: Chat
+    @ObservedObject var chat: Chat
     @State private var messageText: String = ""
-    @State private var messages: [Message] = [Message(text: "Niuzi", isSentByCurrentUser: false)]
+    @State private var messages: [Message] = [Message(text: "Hello", isSentByCurrentUser: false)]
 
     var body: some View {
         VStack {
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    ForEach(messages) { message in
+                    ForEach(chat.messages) { message in
                         MessageView(message: message)
                     }
                 }.padding(.top)
@@ -33,12 +33,16 @@ struct ChatView: View {
                 }
             }.padding()
         }
+        .navigationTitle(chat.username)
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 
     func sendMessage() {
         if !messageText.trimmingCharacters(in: .whitespaces).isEmpty {
             let message = Message(text: messageText, isSentByCurrentUser: true)
-            messages.append(message)
+            chat.lastMessageText = messageText
+            chat.messages.append(message)
             messageText = ""
         }
     }
@@ -47,6 +51,7 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: Chat(username: "Fangze", lastMessageText: "Hello"))
+        
+        ChatView(chat: Chat(username: "Fangze", lastMessageText: "Hello", messages: []))
     }
 }

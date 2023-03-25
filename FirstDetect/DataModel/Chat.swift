@@ -7,8 +7,17 @@
 
 import Foundation
 
-struct Chat: Identifiable {
+class Chat: Identifiable, ObservableObject {
     let id = UUID()
-    let username: String
-    let lastMessageText: String
+    var username: String = ""
+    @Published var lastMessageText: String = ""
+    @Published var messages: [Message] = []
+    
+    init(){}
+    
+    init(username: String, lastMessageText: String, messages: [Message]) {
+        self.username = username
+        self.lastMessageText = lastMessageText
+        self.messages = messages
+    }
 }
