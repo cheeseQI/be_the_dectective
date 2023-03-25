@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftUI
 
 struct ChatListItemView: View {
-    let chat: Chat
+    @ObservedObject var chat: Chat
 
     var body: some View {
         HStack {
@@ -35,6 +35,6 @@ struct ChatListItemView: View {
 
 struct ChatListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListItemView(chat: Chat(username: "Fangze", lastMessageText: "Hello"))
+        ChatListItemView(chat: Chat(username: "Fangze", lastMessageText: "Hello", messages: []))
     }
 }

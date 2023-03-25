@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ChatListView: View {
     @State private var chats: [Chat] = [
-        Chat(username: "Alice", lastMessageText: "Hey, how are you?"),
-        Chat(username: "Bob", lastMessageText: "Let's meet tomorrow."),
-        Chat(username: "Charliecharlie", lastMessageText: "Did you finish the task?")
+        Chat(username: "Alice", lastMessageText: "Hey, how are you?", messages: []),
+        Chat(username: "Bob", lastMessageText: "Let's meet tomorrow.", messages: []),
+        Chat(username: "Charlie", lastMessageText: "Did you finish the task?", messages: [])
     ]
 
 
