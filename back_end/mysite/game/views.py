@@ -12,11 +12,9 @@ from bson.objectid import ObjectId
 
 from django.views.decorators.csrf import csrf_exempt
 
-from . import passwd
-
 # todo: need a separate api interface
-openai.api_key = passwd.key
-openai.organization = passwd.org
+openai.api_key = "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"
+openai.organization = "org-16Dqr6ZJhyzkIU8a1x2G4tIE"
 
 myclient = pymongo.MongoClient("mongodb+srv://yuqirao9903:admin@cluster0.ylscfqf.mongodb.net/"
                                "?retryWrites=true&w=majority")
@@ -56,21 +54,12 @@ def chat_with_npc(request):
         mydb1 = myclient["game_info"]
         npc_col = mydb1["NPCs"]
         myquery = {"_id": uuid, 'NPCs.name': name}
-        npc_obj = npc_col.find(myquery, {"_id": 0, "NPCs":{"$elemMatch":{"name":name}}})[0]
+        npc_obj = npc_col.find(myquery, {"_id": 0, "NPCs": {"$elemMatch": {"name": name}}})[0]
         print(npc_obj)
         conversation = npc_obj.get("NPCs")[0].get("conv")
         print(conversation)
-        conversation.append({"role": "user", "content": msg})
-        reply = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=conversation
-        )
-
-        conversation.append({"role": "assistant", "content": reply['choices'][0]['message']['content']})
-        json_data = "{}"
-        data = json.loads(json_data)
-        data["content"] = reply['choices'][0]['message']['content']
-        #npc_obj["conv"] = conversation
+        data = chat_gpt(conversation, msg)
+        # npc_obj["conv"] = conversation
         update_operation = {"$set": {"NPCs.$.conv": conversation}}
         npc_col.update_one(myquery, update_operation)
         return JsonResponse(data, status=200)
@@ -78,6 +67,40 @@ def chat_with_npc(request):
         # Handle other HTTP methods
         response_data = {'message': 'This endpoint only accepts POST requests.'}
         return JsonResponse(response_data, status=405)
+
+
+@csrf_exempt
+def check_target(request):
+    if request.method == 'POST':
+        input_data = json.loads(request.body)
+        uuid = ObjectId(input_data.get('uuid'))
+        msg = input_data.get('userInput')
+        mydb1 = myclient["game_info"]
+        npc_col = mydb1["NPCs"]
+        target_conv = npc_col.find({"_id": uuid}, {"_id": 0, "target_conv": 1})[0]
+        data = chat_gpt(target_conv, msg)
+        update_operation = {"$set": {"target_conv": target_conv}}
+        npc_col.update_one({"_id": uuid}, update_operation)
+        return JsonResponse(data, status=200)
+    else:
+        # Handle other HTTP methods
+        response_data = {'message': 'This endpoint only accepts POST requests.'}
+        return JsonResponse(response_data, status=405)
+
+
+def chat_gpt(conv, msg):
+    conv.append({"role": "user", "content": msg})
+
+    reply = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=conversation
+    )
+
+    conv.append({"role": "assistant", "content": reply['choices'][0]['message']['content']})
+    json_data = "{}"
+    data = json.loads(json_data)
+    data["content"] = reply['choices'][0]['message']['content']
+    return data
 
 
 @csrf_exempt
@@ -90,6 +113,11 @@ def add_game(request):
         background_col = mydb["name_background_NPC"]
         myquery = {"name": script_name}
         npc_info_list = background_col.find(myquery, {"_id": 0, "NPCInfos": 1})[0].get("NPCInfos")
+        script_target = background_col.find(myquery, {"_id": 0, "NPCInfos": 1})[0].get("target")
+        target_conv = []
+        sys_target = "You are a guide to judge whether the user's input is right for " \
+                     + script_target + "in the story of " + script_name
+        target_conv.append({"role": "system", "content": sys_target})
         npc_list = []
         for npc_info in npc_info_list:
             # data = json.loads(npc_info)
