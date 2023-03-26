@@ -24,6 +24,8 @@
 		C235752129CF9C7A00C82018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752029CF9C7A00C82018 /* MainView.swift */; };
 		C235752329CF9CB900C82018 /* ClueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752229CF9CB900C82018 /* ClueView.swift */; };
 		C235752729CFAA8900C82018 /* ChatDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752629CFAA8900C82018 /* ChatDB.swift */; };
+		C235752929CFD09300C82018 /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752829CFD09300C82018 /* GameInfo.swift */; };
+		C235752B29CFD92F00C82018 /* ScriptDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C235752A29CFD92F00C82018 /* ScriptDB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,9 @@
 		C235752029CF9C7A00C82018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C235752229CF9CB900C82018 /* ClueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClueView.swift; sourceTree = "<group>"; };
 		C235752629CFAA8900C82018 /* ChatDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDB.swift; sourceTree = "<group>"; };
+		C235752829CFD09300C82018 /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		C235752A29CFD92F00C82018 /* ScriptDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptDB.swift; sourceTree = "<group>"; };
+		C235752C29CFE9CD00C82018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +82,11 @@
 		C235750229CF919800C82018 /* FirstDetect */ = {
 			isa = PBXGroup;
 			children = (
+				C235752C29CFE9CD00C82018 /* Info.plist */,
 				C235751F29CF984300C82018 /* Helper */,
 				C235751429CF941100C82018 /* DataModel */,
 				C235751129CF93CE00C82018 /* View */,
 				C235750329CF919800C82018 /* FirstDetectApp.swift */,
-				C235750529CF919800C82018 /* ContentView.swift */,
 				C235750729CF919900C82018 /* Assets.xcassets */,
 				C235750929CF919900C82018 /* Preview Content */,
 			);
@@ -108,6 +113,7 @@
 				4C75719329CFAEDF00B2E66C /* ScriptBackgroundView.swift */,
 				C235752029CF9C7A00C82018 /* MainView.swift */,
 				C235752229CF9CB900C82018 /* ClueView.swift */,
+				C235750529CF919800C82018 /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +125,8 @@
 				C235751929CF96FF00C82018 /* Chat.swift */,
 				4C75719129CFA1F000B2E66C /* Script.swift */,
 				C235752629CFAA8900C82018 /* ChatDB.swift */,
+				C235752829CFD09300C82018 /* GameInfo.swift */,
+				C235752A29CFD92F00C82018 /* ScriptDB.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -200,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C235752B29CFD92F00C82018 /* ScriptDB.swift in Sources */,
 				C235751329CF93D900C82018 /* MessageView.swift in Sources */,
 				C235752129CF9C7A00C82018 /* MainView.swift in Sources */,
 				C235751A29CF96FF00C82018 /* Chat.swift in Sources */,
@@ -215,6 +224,7 @@
 				C235752729CFAA8900C82018 /* ChatDB.swift in Sources */,
 				C235750429CF919800C82018 /* FirstDetectApp.swift in Sources */,
 				C235752329CF9CB900C82018 /* ClueView.swift in Sources */,
+				C235752929CFD09300C82018 /* GameInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +355,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FirstDetect/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FirstDetect/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -373,6 +384,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FirstDetect/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FirstDetect/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

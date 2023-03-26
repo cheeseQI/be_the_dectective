@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct SelectScriptView: View {
-    @State private var scripts = [
-        Script(title: "Script 1", info: "This is info1"),
-        Script(title: "Script 2", info: "This is info2"),
-        Script(title: "Script 3", info: "This is info3"),
-        Script(title: "Script 4", info: "This is info4"),
-        Script(title: "Script 5", info: "This is info5")
-    ]
+    @EnvironmentObject var scriptdb : ScriptDB
     @State private var searchText = ""
     
     var filteredScripts: [Script] {
         if searchText.isEmpty {
-            return scripts
+            return scriptdb.record
         } else {
-            return scripts.filter { $0.title.localizedCaseInsensitiveContains(searchText) || $0.info.localizedCaseInsensitiveContains(searchText) }
+            return scriptdb.record.filter { $0.title.localizedCaseInsensitiveContains(searchText) || $0.author.localizedCaseInsensitiveContains(searchText) ||
+                $0.background.localizedCaseInsensitiveContains(searchText)
+            }
         }
     }
     
@@ -35,7 +31,7 @@ struct SelectScriptView: View {
                         VStack(alignment: .leading) {
                             Text(script.title)
                                 .font(.headline)
-                            Text(script.info)
+                            Text(script.author)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
