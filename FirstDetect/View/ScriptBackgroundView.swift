@@ -11,6 +11,7 @@ struct ScriptBackgroundView: View {
     let script: Script
     @State private var showMainView = false
     @StateObject var chatdb = ChatDB.shared
+
     
     var body: some View {
         VStack {
@@ -46,7 +47,7 @@ struct ScriptBackgroundView: View {
         .environmentObject(chatdb)
         .navigationTitle("\(script.title) background")
         .fullScreenCover(isPresented: $showMainView, content: {
-            MainView()
+            MainView(script: script)
         })
     }
 }

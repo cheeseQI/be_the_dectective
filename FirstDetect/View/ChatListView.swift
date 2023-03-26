@@ -19,6 +19,7 @@ struct ChatListView: View {
                 }
             }
             .navigationTitle("Chats")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

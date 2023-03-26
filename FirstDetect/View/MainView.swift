@@ -8,25 +8,33 @@
 import SwiftUI
 
 struct MainView: View {
+    let script: Script
+    @State private var showSelectView = false
     var body: some View {
-        TabView {
-            ChatListView()
-                .tabItem {
-                    Image(systemName: "message")
-                    Text("Chats")
-                }
-            ClueView()
-                .tabItem{
-                    Image(systemName: "magnifyingglass")
-                    Text("Clues")
-                }
-        }
+            TabView {
+                ChatListView()
+                    .tabItem {
+                        Image(systemName: "message")
+                        Text("Chats")
+                    }
+                ClueView()
+                    .tabItem{
+                        Image(systemName: "magnifyingglass")
+                        Text("Clues")
+                    }
+                AnswerPage(script: script)
+                    .tabItem{
+                        Image(systemName: "pencil")
+                        Text("Answer")
+                    }
+                
+            }
     }
     
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(script: Script(title: "Mumu", author: "Miumiu"))
     }
 }

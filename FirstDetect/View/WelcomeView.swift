@@ -10,7 +10,7 @@ import SwiftUI
 struct WelcomeView: View {
     @State private var showSelectView = false
     @EnvironmentObject var scriptdb : ScriptDB
-    let urlsring = "http://vcm-30653.vm.duke.edu:8080/game/start"
+    
     
     var body: some View {
         VStack {
@@ -21,7 +21,7 @@ struct WelcomeView: View {
             
             Button(action: {
                 self.showSelectView = true
-                scriptdb.fetchAndUpdateData(urlString: urlsring)
+                
             }, label: {
                 Text("Get Started")
                     .font(.headline)

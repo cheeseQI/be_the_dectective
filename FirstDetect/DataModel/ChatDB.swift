@@ -7,8 +7,8 @@
 
 import Foundation
 
-let postChaturl = "http://vcm-30653.vm.duke.edu:8080/game/start"
-let postChosenScripturl = "http://vcm-30653.vm.duke.edu:8080/game/start"
+let postChaturl = "http://vcm-30653.vm.duke.edu:8080/game/chat_with_npc"
+let postChosenScripturl = "http://vcm-30653.vm.duke.edu:8080/game/add_game"
 
 class ChatDB : ObservableObject{
     static let shared = ChatDB()

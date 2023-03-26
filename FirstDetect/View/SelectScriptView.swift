@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SelectScriptView: View {
     @EnvironmentObject var scriptdb : ScriptDB
+    
     @State private var searchText = ""
+    let urlsring = "http://vcm-30653.vm.duke.edu:8080/game/start"
     
     var filteredScripts: [Script] {
         if searchText.isEmpty {
@@ -37,6 +39,9 @@ struct SelectScriptView: View {
                         }
                     }
                 }
+            }
+            .onAppear{
+                scriptdb.fetchAndUpdateData(urlString: urlsring)
             }
             .listStyle(.plain)
             .navigationBarTitle("Select a Script")

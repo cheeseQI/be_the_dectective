@@ -35,6 +35,7 @@ class ScriptDB: ObservableObject{
                         DispatchQueue.main.async {
                             self.record = decodedResponse.scripts
                             GameInfo.id = decodedResponse.uid
+                            print(GameInfo.id)
                         }
                     } catch {
                         print("Decoding failed: \(error)")
