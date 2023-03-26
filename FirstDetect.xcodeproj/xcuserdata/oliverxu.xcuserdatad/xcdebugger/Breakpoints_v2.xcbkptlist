@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "5D124F0D-84EC-4829-8F43-78323EAD2C76"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2268B33F-A2C2-4BAE-AAFA-A273F08D37DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FirstDetect/DataModel/ScriptDB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "fetchAndUpdateData(urlString:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2268B33F-A2C2-4BAE-AAFA-A273F08D37DA - d976e13ea65cc54"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FirstDetect.ScriptDB.fetchAndUpdateData(urlString: Swift.String) -&gt; ()"
+                  moduleName = "FirstDetect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oliverxu/Desktop/ECE564/ECE546HW4/FirstDetect/FirstDetect/DataModel/ScriptDB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "2268B33F-A2C2-4BAE-AAFA-A273F08D37DA - d976e13ea65cc54"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FirstDetect.ScriptDB.fetchAndUpdateData(urlString: Swift.String) -&gt; ()"
+                  moduleName = "FirstDetect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oliverxu/Desktop/ECE564/ECE546HW4/FirstDetect/FirstDetect/DataModel/ScriptDB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "380">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89A7C5B6-2F15-44EB-914B-B912322568EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FirstDetect/DataModel/ScriptDB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "fetchAndUpdateData(urlString:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "89A7C5B6-2F15-44EB-914B-B912322568EF - badfa48ff96c743a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in FirstDetect.ScriptDB.fetchAndUpdateData(urlString: Swift.String) -&gt; ()"
+                  moduleName = "FirstDetect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oliverxu/Desktop/ECE564/ECE546HW4/FirstDetect/FirstDetect/DataModel/ScriptDB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "652">
+               </Location>
+               <Location
+                  uuid = "89A7C5B6-2F15-44EB-914B-B912322568EF - 8da473ff0b59fb98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in FirstDetect.ScriptDB.fetchAndUpdateData(urlString: Swift.String) -&gt; ()"
+                  moduleName = "FirstDetect"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/oliverxu/Desktop/ECE564/ECE546HW4/FirstDetect/FirstDetect/DataModel/ScriptDB.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "18D35BB4-BAA2-46B7-819E-D7B9FBAEEE7F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FirstDetect/DataModel/ScriptDB.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "fetchAndUpdateData(urlString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

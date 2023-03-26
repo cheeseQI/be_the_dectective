@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ClueView: View {
+    var scene : Image
+    var searchSceneUrl = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Search the scene")
+            scene
+                .resizable()
+        }
     }
 }
 
 struct ClueView_Previews: PreviewProvider {
     static var previews: some View {
-        ClueView()
+        ClueView(scene: Image("welcomeImg"))
     }
 }

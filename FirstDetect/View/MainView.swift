@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     let script: Script
+    let sceneString: String
     @State private var showSelectView = false
     var body: some View {
             TabView {
@@ -17,7 +18,7 @@ struct MainView: View {
                         Image(systemName: "message")
                         Text("Chats")
                     }
-                ClueView()
+                ClueView(scene: imageFromString(base64string: sceneString))
                     .tabItem{
                         Image(systemName: "magnifyingglass")
                         Text("Clues")
@@ -35,6 +36,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(script: Script(title: "Mumu", author: "Miumiu"))
+        MainView(script: Script(title: "Mumu", author: "Miumiu"), sceneString: "")
     }
 }

@@ -6,18 +6,31 @@
 //
 
 import Foundation
+import SwiftUI
 class Script: Identifiable, Decodable {
     let id = UUID()
     let title: String
     let author: String
     let background: String
     var chats : [Chat] = []
+    var target : String = ""
+//    var picture: String = ""
+    
+//    var img: Image {
+//        guard let imgData = Data(base64Encoded: self.picture, options: .ignoreUnknownCharacters),
+//              let uiImage = UIImage(data: imgData)
+//        else { return Image("error") }
+//        return Image(uiImage: uiImage)
+//    }
     
     enum CodingKeys : String, CodingKey {
         case title = "name"
         case author = "author"
         case background = "background"
         case npcs = "NPCInfos"
+        case target = "target"
+//        case picture = "scene"
+        
     }
     
     required init(from decoder: Decoder) throws{
@@ -25,6 +38,8 @@ class Script: Identifiable, Decodable {
         self.title = try container.decode(String.self, forKey: .title)
         self.author = try container.decode(String.self, forKey: .author)
         self.background = try container.decode(String.self, forKey: .background)
+        self.target = try container.decode(String.self, forKey: .target)
+//        self.picture = try container.decode(String.self, forKey: .picture)
         chats = try container.decode([Chat].self, forKey: .npcs)
     }
     
