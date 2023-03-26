@@ -14,19 +14,27 @@ struct WelcomeView: View {
     
     var body: some View {
         VStack {
-            Text("Welcome!")
+            Image("welcomeImg")
+                .resizable()
+                .frame(width: 400.0, height: 400.0)
+            
+            Text("Welcome to\nBe the detective!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.center)
                 .padding(.bottom, 50)
             
             Button(action: {
                 self.showSelectView = true
                 
             }, label: {
-                Text("Get Started")
-                    .font(.headline)
+                Text("Get started")
+                    .font(.title2)
+                    .fontWeight(.bold)
                     .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
                     .padding()
+                    .frame(width: 330.0, height: 60.0)
                     .background(Color.blue)
                     .cornerRadius(10)
             })
