@@ -9,10 +9,12 @@ import Foundation
 
 class GameInfo{
     static var id : String = ""
+    static var target : String = ""
     init(){
     }
     
-    func update(id: String){
+    func update(id: String, target: String){
         GameInfo.id = id
+        GameInfo.target = target
     }
 }

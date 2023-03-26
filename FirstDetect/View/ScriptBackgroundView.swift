@@ -14,7 +14,17 @@ struct ScriptBackgroundView: View {
 
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
+            Text("Your Mission")
+                .font(.title)
+                .fontWeight(.bold)
+            ScrollView {
+                Text(script.target)
+                    .padding()
+            }
+            Text("Background")
+                .font(.title)
+                .fontWeight(.bold)
             ScrollView {
                 Text(script.background)
                     .padding()

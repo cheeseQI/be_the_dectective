@@ -12,12 +12,14 @@ class Script: Identifiable, Decodable {
     let author: String
     let background: String
     var chats : [Chat] = []
+    var target : String = ""
     
     enum CodingKeys : String, CodingKey {
         case title = "name"
         case author = "author"
         case background = "background"
         case npcs = "NPCInfos"
+        case target = "target"
     }
     
     required init(from decoder: Decoder) throws{
@@ -25,6 +27,7 @@ class Script: Identifiable, Decodable {
         self.title = try container.decode(String.self, forKey: .title)
         self.author = try container.decode(String.self, forKey: .author)
         self.background = try container.decode(String.self, forKey: .background)
+        self.target = try container.decode(String.self, forKey: .target)
         chats = try container.decode([Chat].self, forKey: .npcs)
     }
     
