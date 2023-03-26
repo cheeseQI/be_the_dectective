@@ -21,21 +21,20 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    myclient = pymongo.MongoClient("mongodb+srv://yuqirao9903:admin@cluster0.ylscfqf.mongodb.net/"
-                                   "?retryWrites=true&w=majority")
-    mydb = myclient["script_list"]
-    mycol = mydb["name_background_NPC"]
-    myquery = {"name": "Murder on the Orient Express"}
-    mydb1 = myclient["game_info"]
-    mycol1 = mydb1["NPCs"]
 
-    mydoc = {"NPCs": [{"name": "Bouc", "conv": []}]}
-
-    x = mycol1.insert_one(mydoc)
-
-    print(x.inserted_id)
-
-
-    for x in mycol.find(myquery, {"_id": 0, "name": 1, "author": 1}):
-         print(x)
+    main()
+    # mydb = myclient["script_list"]
+    # mycol = mydb["name_background_NPC"]
+    # myquery = {"name": "Murder on the Orient Express"}
+    # mydb1 = myclient["game_info"]
+    # mycol1 = mydb1["NPCs"]
+    #
+    # mydoc = {"NPCs": [{"name": "Bouc", "conv": []}]}
+    #
+    # x = mycol1.insert_one(mydoc)
+    #
+    # print(x.inserted_id)
+    #
+    #
+    # for x in mycol.find(myquery, {"_id": 0, "name": 1, "author": 1}):
+    #      print(x)
