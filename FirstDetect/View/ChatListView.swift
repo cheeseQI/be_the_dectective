@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct ChatListView: View {
-    @State private var chats: [Chat] = [
-        Chat(username: "Alice", lastMessageText: "Hey, how are you?", messages: []),
-        Chat(username: "Bob", lastMessageText: "Let's meet tomorrow.", messages: []),
-        Chat(username: "Charlie", lastMessageText: "Did you finish the task?", messages: [])
-    ]
+    @EnvironmentObject var chatdb : ChatDB
 
 
     var body: some View {
         NavigationView {
-            List(chats) { chat in
+            List(chatdb.record) { chat in
                 NavigationLink(destination: ChatView(chat: chat)) {
                     ChatListItemView(chat: chat)
                 }

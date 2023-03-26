@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct ChatView: View {
+    @EnvironmentObject var chatdb: ChatDB
     @ObservedObject var chat: Chat
     @State private var messageText: String = ""
     @State private var messages: [Message] = [Message(text: "Hello", isSentByCurrentUser: false)]
@@ -33,10 +34,17 @@ struct ChatView: View {
                 }
             }.padding()
         }
+        .navigationBarItems(trailing: Button {
+        } label: {
+            Image(systemName: "person.crop.circle")
+                .foregroundColor(.blue)
+        })
         .navigationTitle(chat.username)
         .navigationBarTitleDisplayMode(.inline)
         
     }
+    
+    
 
     func sendMessage() {
         if !messageText.trimmingCharacters(in: .whitespaces).isEmpty {
@@ -44,6 +52,17 @@ struct ChatView: View {
             chat.lastMessageText = messageText
             chat.messages.append(message)
             messageText = ""
+            chatdb.postChat(username: chat.username, lastMessageText: chat.lastMessageText){ result in
+                switch result {
+                case .success(let data):
+                    if let jsonString = String(data: data, encoding: .utf8) {
+                        print("Encoded JSON:\n\(jsonString)")
+                    }
+                    print("Chat object successfully posted. Server response: \(data)")
+                case .failure(let error):
+                    print("Error posting chat object: \(error.localizedDescription)")
+                }
+            }
         }
     }
 }
