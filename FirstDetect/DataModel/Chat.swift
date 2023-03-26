@@ -10,7 +10,7 @@ import Foundation
 class Chat: Identifiable, ObservableObject, Codable {
     //let id = UUID()
     var username: String = ""
-    var background: String = ""
+    var background: String = "default background"
     @Published var lastMessageText: String = ""
     @Published var messages: [Message] = []
     

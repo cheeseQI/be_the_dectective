@@ -19,7 +19,7 @@ struct AnswerPage: View {
                 Spacer()
                     .frame(height: 10.0)
                 HStack {
-                    TextField("enter message", text: $messageText)
+                    TextField("enter your answer", text: $messageText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.leading)
                     

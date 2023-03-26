@@ -45,7 +45,11 @@ struct ScriptBackgroundView: View {
             .padding(.bottom, 16)
         }
         .environmentObject(chatdb)
-        .navigationTitle("\(script.title) background")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(
+            Text(script.title)
+                .font(.system(size: 24))
+        )
         .fullScreenCover(isPresented: $showMainView, content: {
             MainView(script: script)
         })
