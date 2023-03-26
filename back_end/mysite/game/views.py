@@ -122,7 +122,7 @@ def add_game(request):
         #              "'all of passengers'"
         sys_target = "You are a guide to judge whether the user's input is correct for " + script_target + "in the " \
                                                                                                          "story of " \
-                     + script_name + ". Give the answer if the user input is 'Answer'."
+                     + script_name + ". Give the correct answer if the user input is 'Answer'."
         target_conv.append({"role": "system", "content": sys_target})
         npc_list = []
         for npc_info in npc_info_list:
