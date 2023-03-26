@@ -6,6 +6,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.http import JsonResponse
+from . import passwd
+from . import util
 import openai
 import uuid
 from bson.objectid import ObjectId
@@ -13,14 +15,16 @@ from bson.objectid import ObjectId
 from django.views.decorators.csrf import csrf_exempt
 
 # todo: need a separate api interface
-openai.api_key = "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"
-openai.organization = "org-16Dqr6ZJhyzkIU8a1x2G4tIE"
+openai.api_key = passwd.key
+openai.organization = passwd.org
 
 myclient = pymongo.MongoClient("mongodb+srv://yuqirao9903:admin@cluster0.ylscfqf.mongodb.net/"
                                "?retryWrites=true&w=majority")
-conversation = [{"role": "system", "content": "You are the role of Princess Dragomiroff in story"
-                                              "Murder on the Orient Express, "
-                                              "you need to answer my questions in her tongue"}]
+
+
+# conversation = [{"role": "system", "content": "You are the role of Princess Dragomiroff in story"
+#                                               "Murder on the Orient Express, "
+#                                               "you need to answer my questions in her tongue"}]
 
 
 @csrf_exempt
@@ -30,15 +34,14 @@ def start(request):
     mydb1 = myclient["game_info"]
     npc_col = mydb1["NPCs"]
     mydoc = {"NPCs": []}
-    # todo: need uncomment
-    # obj = npc_col.insert_one(mydoc)
+    obj = npc_col.insert_one(mydoc)
     list = []
     for x in background_col.find({}, {"_id": 0}):
         list.append(x)
     # get script from scriptList; and also the uuid
-    # todo: need uncomment
-    uuid_str = str("641fcacca93b6812ff4365da")
-    data = {"uuid": uuid_str, "script_list": list}
+    uuid_str = str(obj.inserted_id)
+    scenes = util.base64_data.decode("utf-8")
+    data = {"uuid": uuid_str, "script_list": list, "scenes": scenes}
     json_data = json.dumps(data)
     return HttpResponse(json_data, content_type='application/json')
 
@@ -50,14 +53,14 @@ def chat_with_npc(request):
         uuid = ObjectId(input_data.get('uuid'))
         name = input_data.get('npcName')
         msg = input_data.get('userInput')
-        print(msg)
+        # print(msg)
         mydb1 = myclient["game_info"]
         npc_col = mydb1["NPCs"]
         myquery = {"_id": uuid, 'NPCs.name': name}
         npc_obj = npc_col.find(myquery, {"_id": 0, "NPCs": {"$elemMatch": {"name": name}}})[0]
-        print(npc_obj)
+        # print(npc_obj)
         conversation = npc_obj.get("NPCs")[0].get("conv")
-        print(conversation)
+        # print(conversation)
         data = chat_gpt(conversation, msg)
         # npc_obj["conv"] = conversation
         update_operation = {"$set": {"NPCs.$.conv": conversation}}
@@ -74,10 +77,10 @@ def check_target(request):
     if request.method == 'POST':
         input_data = json.loads(request.body)
         uuid = ObjectId(input_data.get('uuid'))
-        msg = input_data.get('userInput')
+        msg = input_data.get('answer')
         mydb1 = myclient["game_info"]
         npc_col = mydb1["NPCs"]
-        target_conv = npc_col.find({"_id": uuid}, {"_id": 0, "target_conv": 1})[0]
+        target_conv = npc_col.find({"_id": uuid}, {"_id": 0, "target_conv": 1})[0].get("target_conv")
         data = chat_gpt(target_conv, msg)
         update_operation = {"$set": {"target_conv": target_conv}}
         npc_col.update_one({"_id": uuid}, update_operation)
@@ -93,7 +96,7 @@ def chat_gpt(conv, msg):
 
     reply = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=conversation
+        messages=conv
     )
 
     conv.append({"role": "assistant", "content": reply['choices'][0]['message']['content']})
@@ -113,10 +116,11 @@ def add_game(request):
         background_col = mydb["name_background_NPC"]
         myquery = {"name": script_name}
         npc_info_list = background_col.find(myquery, {"_id": 0, "NPCInfos": 1})[0].get("NPCInfos")
-        script_target = background_col.find(myquery, {"_id": 0, "NPCInfos": 1})[0].get("target")
+        script_target = background_col.find(myquery, {"_id": 0, "target": 1})[0].get("target")
         target_conv = []
-        sys_target = "You are a guide to judge whether the user's input is right for " \
-                     + script_target + "in the story of " + script_name
+        sys_target = "You are a guide to judge whether the user's input is right for " + script_target + "in the " \
+                                                                                                         "story of " \
+                     + script_name + ". Give the right answer if the user input 'answer'."
         target_conv.append({"role": "system", "content": sys_target})
         npc_list = []
         for npc_info in npc_info_list:
@@ -128,7 +132,7 @@ def add_game(request):
         # print(npc_list)
         mydb1 = myclient["game_info"]
         npc_col = mydb1["NPCs"]
-        update_operation = {"$set": {"NPCs": npc_list}}
+        update_operation = {"$set": {"NPCs": npc_list, "target_conv": target_conv}}
         # print(npc_col.find({"_id": ObjectId(uuid)})[0])
         npc_col.update_one({"_id": ObjectId(uuid)}, update_operation)
         return JsonResponse({}, status=200)
@@ -140,7 +144,8 @@ def add_game(request):
 
 
 def get_sys_conv(character, story):
-    return "You are the role of " + character + " in story " + story + ", you need to answer my questions in his/her tongue"
+    return "You are the role of " + character + " in story " + story + ", you need to answer my questions in his/her " \
+                                                                       "tongue "
 
 
 @csrf_exempt
