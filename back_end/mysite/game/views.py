@@ -118,9 +118,11 @@ def add_game(request):
         npc_info_list = background_col.find(myquery, {"_id": 0, "NPCInfos": 1})[0].get("NPCInfos")
         script_target = background_col.find(myquery, {"_id": 0, "target": 1})[0].get("target")
         target_conv = []
-        sys_target = "You are a guide to judge whether the user's input is right for " + script_target + "in the " \
+        # sys_target = "You are a guide to judge the murderer. The murderer is " \
+        #              "'all of passengers'"
+        sys_target = "You are a guide to judge whether the user's input is correct for " + script_target + "in the " \
                                                                                                          "story of " \
-                     + script_name + ". Give the right answer if the user input 'answer'."
+                     + script_name + ". Give the answer if the user input is 'Answer'."
         target_conv.append({"role": "system", "content": sys_target})
         npc_list = []
         for npc_info in npc_info_list:
