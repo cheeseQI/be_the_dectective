@@ -4,14 +4,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import openai
 
-import configparser
+import passwd
 
-# 读取配置文件
-config = configparser.ConfigParser()
-config.read('/project/be_the_dectective/config.ini')
 # todo: need a separate api interface
-openai.api_key = config.get('key', 'key')
-openai.organization = config.get('org', 'org')
+openai.api_key = passwd.key
+openai.organization = passwd.org
 
 conversation = [{"role": "system", "content": "You are the roles of Princess Dragomiroff in story"
                                               "Murder on the Orient Express, "
