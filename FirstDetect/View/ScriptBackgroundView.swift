@@ -30,7 +30,7 @@ struct ScriptBackgroundView: View {
             })
             .padding(.bottom, 16)
         }
-        .navigationTitle("Script Background")
+        .navigationTitle("\(script.title) background")
         .fullScreenCover(isPresented: $showMainView, content: {
             MainView()
         })
