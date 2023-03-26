@@ -34,6 +34,11 @@ struct ChatView: View {
                 }
             }.padding()
         }
+        .navigationBarItems(trailing: Button {
+        } label: {
+            Image(systemName: "person.crop.circle")
+                .foregroundColor(.blue)
+        })
         .navigationTitle(chat.username)
         .navigationBarTitleDisplayMode(.inline)
         
