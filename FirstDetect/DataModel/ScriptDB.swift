@@ -12,6 +12,7 @@ import Combine
 class ScriptDB: ObservableObject{
     static var shared = ScriptDB()
     @Published var record : [Script]
+    var sceneString = ""
     
     init(){
         self.record = [Script]()
@@ -35,7 +36,8 @@ class ScriptDB: ObservableObject{
                         DispatchQueue.main.async {
                             self.record = decodedResponse.scripts
                             GameInfo.id = decodedResponse.uid
-                            print(GameInfo.id)
+                            self.sceneString = decodedResponse.sceneString
+//                            print(GameInfo.id)
                         }
                     } catch {
                         print("Decoding failed: \(error)")
@@ -50,9 +52,11 @@ class ScriptDB: ObservableObject{
 struct ServerResponse: Decodable {
     let scripts: [Script]
     let uid: String
+    let sceneString: String
 
     enum CodingKeys: String, CodingKey {
         case scripts = "script_list"
         case uid = "uuid"
+        case sceneString = "scenes"
     }
 }

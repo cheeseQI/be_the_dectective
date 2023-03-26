@@ -12,6 +12,7 @@ struct AnswerPage: View {
     @State private var messageText: String = ""
     @State private var showSelectView = false
     @State private var reply = ""
+    @State private var showProgress = false
     let urlsring = "http://vcm-30653.vm.duke.edu:8080/game/check_target"
     var body: some View {
         VStack{
@@ -37,22 +38,37 @@ struct AnswerPage: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.leading)
                     
-                    Button(action: sendMessage) {
+                    Button(action: {
+                        showProgress = true
+                        sendMessage()
+                    }) {
                         Image(systemName: "paperplane.fill")
                             .font(.system(size: 24))
                             .padding(.trailing)
                     }
                 }.padding()
-                Text(reply)
+                
+                
+                
+                if showProgress {
+                    ProgressView()
+                        .padding()
+                } else {
+                    Text(reply)
+                        .padding()
+                }
+                
+                Spacer()
+                
                 Button(action: {
                     self.showSelectView = true
-                    
                 }, label: {
                     Text("End Game")
                         .font(.headline)
                         .foregroundColor(.white)
+                        .frame(width: 330.0)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.red)
                         .cornerRadius(10)
                 })
             }
@@ -63,7 +79,7 @@ struct AnswerPage: View {
     }
     func sendMessage() {
         if !messageText.trimmingCharacters(in: .whitespaces).isEmpty {
-            let message = Message(text: messageText, isSentByCurrentUser: true)
+            _ = Message(text: messageText, isSentByCurrentUser: true)
             let decoder = JSONDecoder()
             postAnswer(ans: messageText){ result in
                 switch result {
@@ -75,6 +91,7 @@ struct AnswerPage: View {
                             if let messageContent = res["content"] {
                                 DispatchQueue.main.async {
                                     reply = messageContent
+                                    showProgress = false
                                 }
                             }
                         } catch {
@@ -90,7 +107,7 @@ struct AnswerPage: View {
         }
     }
     
-    func postAnswer( ans: String, completion: @escaping (Result<Data, Error>) -> Void) {
+    func postAnswer(ans: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let url = URL(string: urlsring)
         let encoder = JSONEncoder()
         let postMessage = ["uuid": GameInfo.id, "answer": ans]

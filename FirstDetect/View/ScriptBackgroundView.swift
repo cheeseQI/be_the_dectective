@@ -11,6 +11,7 @@ struct ScriptBackgroundView: View {
     let script: Script
     @State private var showMainView = false
     @StateObject var chatdb = ChatDB.shared
+    @EnvironmentObject var scriptdb : ScriptDB
 
     
     var body: some View {
@@ -61,7 +62,7 @@ struct ScriptBackgroundView: View {
                 .font(.system(size: 24))
         )
         .fullScreenCover(isPresented: $showMainView, content: {
-            MainView(script: script)
+            MainView(script: script, sceneString: scriptdb.sceneString)
         })
     }
 }
