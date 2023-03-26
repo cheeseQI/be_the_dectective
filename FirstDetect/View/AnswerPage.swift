@@ -16,7 +16,6 @@ struct AnswerPage: View {
             ScrollView {
                 Text(script.background)
                     .padding()
-                Text("Your answer")
                 Spacer()
                     .frame(height: 10.0)
                 HStack {
