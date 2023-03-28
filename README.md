@@ -1,4 +1,4 @@
-###Inspiration
+### Inspiration
 Detective novels have captivated readers for generations, immersing them in intriguing mysteries and thrilling adventures. We wanted to bring this experience to life in an interactive, first-person game that would challenge players to solve cases using their own wit and intuition. Drawing from classic detective stories, we designed "Be The Detective" to put players in the shoes of a brilliant detective, facing unique and engaging mysteries.
 
 ###What it does
